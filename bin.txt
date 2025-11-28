@@ -1,0 +1,55 @@
+<div ref={redContainerRef} className="h-[1000vh] bg-black hidden py-20 relative">
+                <h1 className='text-white text-6xl sticky top-0 font-black text-center'>My Skills</h1>
+                <div ref={scaleContainerRef} className="h-screen fixed bg-transparent z-50 top-0 left-0 w-full overflow-hidden">
+                    {/* Center - JavaScript */}
+                    <div
+                        ref={javascriptIconRef}
+                        className="absolute z-10 flex flex-col items-center justify-center w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full shadow-2xl shadow-yellow-500/50 p-2 sm:p-3 md:p-4"
+                        style={{
+                            left: '50%',
+                            top: '50%',
+                            transform: 'translate(-50%, -50%)',
+                        }}
+                    >
+                        <img
+                            src={javascriptIcon}
+                            alt="JavaScript"
+                            className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mb-0.5 sm:mb-1"
+                            style={{ objectFit: 'contain' }}
+                        />
+                        <span className="text-[8px] sm:text-[10px] md:text-xs font-bold text-yellow-900 leading-tight">JavaScript</span>
+                    </div>
+
+                    {/* Scattered skills all over the screen */}
+                    {skills.map((skill, index) => {
+                        const position = skillPositions[index];
+
+                        return (
+                            <div
+                                key={skill.name}
+                                ref={(el) => {
+                                    skillIconsRef.current[index] = el;
+                                }}
+                                className="absolute flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-zinc-700 to-zinc-900 rounded-full shadow-lg border border-zinc-600/50 hover:scale-110 transition-transform cursor-pointer group p-1.5 sm:p-2 md:p-3"
+                                style={{
+                                    left: `${position.left}%`,
+                                    top: `${position.top}%`,
+                                    transform: 'translate(-50%, -50%)',
+                                }}
+                            >
+                                <img
+                                    src={skill.icon}
+                                    alt={skill.name}
+                                    className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 mb-0.5 sm:mb-1 group-hover:scale-110 transition-transform"
+                                    style={{
+                                        objectFit: 'contain',
+                                    }}
+                                />
+                                <span className="text-[7px] sm:text-[8px] md:text-[10px] font-semibold text-white/90 text-center px-0.5 sm:px-1 leading-tight">
+                                    {skill.name}
+                                </span>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
